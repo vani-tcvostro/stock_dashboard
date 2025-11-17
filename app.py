@@ -26,12 +26,12 @@ end_date=st.date_input("End Date",pd.to_datetime("2024-12-31"))
 #We only take 'Close' prices since they represent final market trading value of the day
 data=yf.download(stocks,start=start_date,end=end_date,auto_adjust=True)['Close']
 
-# Displaying first few rows so user sees data is correctly loaded
+#displaying first few rows so user sees data is correctly loaded
 st.subheader("First 5 Rows of Data")
 st.write(data.head())
 
 #PRICE TREND PLOT
-# Shows how stock values moved over time. it helps identify growth, crashes, patterns
+#Shows how stock values moved over time. it helps identify growth, crashes, patterns
 st.subheader("Price Trend Over Time")
 fig1,ax1=plt.subplots()
 for s in stocks:
@@ -41,13 +41,13 @@ ax1.set_ylabel("Price (INR)")
 ax1.legend()
 st.pyplot(fig1)
 
-# DAILY RETURNS 
-# Returns = % change day-to-day , helps measure gain/loss behavior
+#DAILY RETURNS 
+#Returns is % change day to day , helps measure gain and loss behavior
 returns=data.pct_change()
 
 # VOLATILITY ANALYSIS
-#Volatility=rolling standard deviation , shows how risky/unstable the stock is
-#Using 30-day window to smooth short-term fluctuations
+#Volatility=rolling standard deviation , shows how risky the stock is
+#Using 30 day window to smooth short-term fluctuations
 st.subheader("Rolling Volatility (30 Days)")
 fig2,ax2=plt.subplots()
 for s in stocks:
@@ -57,10 +57,11 @@ ax2.set_ylabel("Volatility (Std Dev)")
 ax2.legend()
 st.pyplot(fig2)
 
-# CORRELATION HEATMAP 
-# Shows how similarly stocks move relative to each other
-# Helps understand diversification and portfolio risk
+#CORRELATION HEATMAP 
+#Shows how similarly stocks move relative to each other
+#Helps understand diversification and portfolio risk
 st.subheader(" Correlation Between Selected Stocks")
 fig3,ax3=plt.subplots()
 sns.heatmap(returns.corr(),annot=True,cmap="coolwarm",ax=ax3)
 st.pyplot(fig3)
+
