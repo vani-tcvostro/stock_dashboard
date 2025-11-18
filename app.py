@@ -7,7 +7,7 @@ import seaborn as sns
 
 st.title("Stock Market Analytics Dashboard")
 
-# Sidebar (User Inputs)
+#Sidebar (User Inputs)
 #user selects which stocks they want to study
 #^NSEI is NIFTY 50 is used as overall market comparison
 stocks=st.multiselect(
@@ -47,7 +47,7 @@ returns=data.pct_change()
 
 # VOLATILITY ANALYSIS
 #Volatility=rolling standard deviation , shows how risky the stock is
-#Using 30 day window to smooth short-term fluctuations
+#Using 30 day window to smooth short term fluctuations
 st.subheader("Rolling Volatility (30 Days)")
 fig2,ax2=plt.subplots()
 for s in stocks:
@@ -64,4 +64,5 @@ st.subheader(" Correlation Between Selected Stocks")
 fig3,ax3=plt.subplots()
 sns.heatmap(returns.corr(),annot=True,cmap="coolwarm",ax=ax3)
 st.pyplot(fig3)
+
 
